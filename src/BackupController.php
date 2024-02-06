@@ -14,7 +14,7 @@ class BackupController
             $filename = $backupService->backup();
 
             // Return the backup file as a download response
-            return response()->download(storage_path("app/backups/$filename"))->deleteFileAfterSend(true);
+            return response()->download($filename)->deleteFileAfterSend(true);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 500);
         }
