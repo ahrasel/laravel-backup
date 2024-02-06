@@ -24,7 +24,7 @@ class BackupService
         $password = config('database.connections.mysql.password');
         $filename = 'backup_' . date('YmdHis') . '.sql';
 
-        $command = "mysqldump -u $username -p$password $databaseName > " . storage_path("app/backups/$filename");
+        $command = "mysqldump -u $username -p$password $databaseName > " . $filename;
 
         // Execute the command
         $status =  exec($command);
@@ -39,7 +39,7 @@ class BackupService
         $password = config('database.connections.pgsql.password');
         $filename = 'backup_' . date('YmdHis') . '.sql';
 
-        $command = "pg_dump -U $username -d $databaseName -h localhost > " . storage_path("app/backups/$filename");
+        $command = "pg_dump -U $username -d $databaseName -h localhost > " . $filename;
 
         // Execute the command
         exec($command);
